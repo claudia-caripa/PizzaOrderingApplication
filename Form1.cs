@@ -97,7 +97,6 @@ namespace PizzaOrderingApplication
             CalculateBasePrice(lstPizzaName);
 
             gbExtraToppings.Enabled = true;
-            gbSize.Enabled=true;
         }
 
         private void ToppingHasBeenClicked(CheckBox checkboxName)
@@ -116,8 +115,7 @@ namespace PizzaOrderingApplication
 
         private void ToppingClicked(object sender, EventArgs e)
         {
-        
-
+            gbSize.Enabled = true;
         }
 
         private void cbTomatoes_CheckedChanged(object sender, EventArgs e)
@@ -204,6 +202,7 @@ namespace PizzaOrderingApplication
         {
             btnOrder.Enabled = true;
             txtSpecialRequirements.Enabled = true;
+            gbExtraToppings.Enabled = false;
 
             if (rbSmall.Checked)
             {
@@ -226,8 +225,9 @@ namespace PizzaOrderingApplication
         private void btnOrder_Click(object sender, EventArgs e)
         {
             string size = "";
-            string toppings = "";
+            string toppings = " with ";
             string specialRequirements = "";
+
             Console.WriteLine(lstPizzaName.SelectedItem.ToString());
             Console.WriteLine(finalPrice.ToString("C"));
 
@@ -240,15 +240,24 @@ namespace PizzaOrderingApplication
                 }
             }
 
-            foreach (Control item in gbExtraToppings.Controls)
+            if (cbNoTopping.Checked)
             {
-                CheckBox checkBox = item as CheckBox;
-                if (checkBox.Checked)
-                {
-                    toppings += $"{checkBox.Text}, ";
-                }
-
+                toppings = " with no topping,";
             }
+            else
+            {
+                foreach (Control item in gbExtraToppings.Controls)
+                {
+                    CheckBox checkBox = item as CheckBox;
+                    if (checkBox.Checked)
+                    {
+                        toppings += $"{checkBox.Text}, ";
+                    }
+
+                }
+            }
+
+
 
 
             Console.WriteLine(size);
@@ -256,11 +265,11 @@ namespace PizzaOrderingApplication
 
             if (txtSpecialRequirements.Text != string.Empty)
             {
-                specialRequirements = $"Special Requirements: {txtSpecialRequirements.Text}.";
+                specialRequirements = $"Special Requirements: {txtSpecialRequirements.Text}";
             }
 
-            MessageBox.Show($"Your order is: {size} {lstPizzaName.Text.ToString()}, {toppings} \n{specialRequirements}\n" +
-                $"Please pay {finalPrice} at the cashier.", "Your Order");
+            MessageBox.Show($"Your order is: {size} {lstPizzaName.Text}, {toppings} \n{specialRequirements}\n\n" +
+                $"Please pay {finalPrice.ToString("C")} at the cashier.", "Your Order");
 
             Reset();
         }

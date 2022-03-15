@@ -57,6 +57,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
+            this.cbNoTopping = new System.Windows.Forms.CheckBox();
             this.gbExtraToppings.SuspendLayout();
             this.gbSize.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +107,7 @@
             // 
             // gbExtraToppings
             // 
+            this.gbExtraToppings.Controls.Add(this.cbNoTopping);
             this.gbExtraToppings.Controls.Add(this.cbOnion);
             this.gbExtraToppings.Controls.Add(this.cbBacon);
             this.gbExtraToppings.Controls.Add(this.cbChicken);
@@ -416,6 +418,17 @@
             this.lblPrice.TabIndex = 10;
             this.lblPrice.Text = "$0.00";
             // 
+            // cbNoTopping
+            // 
+            this.cbNoTopping.AutoSize = true;
+            this.cbNoTopping.Location = new System.Drawing.Point(55, 208);
+            this.cbNoTopping.Name = "cbNoTopping";
+            this.cbNoTopping.Size = new System.Drawing.Size(87, 19);
+            this.cbNoTopping.TabIndex = 14;
+            this.cbNoTopping.Text = "No topping";
+            this.cbNoTopping.UseVisualStyleBackColor = true;
+            this.cbNoTopping.Click += new System.EventHandler(this.ToppingClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -476,5 +489,6 @@
         private Label label3;
         private Label label4;
         private Label lblPrice;
+        private CheckBox cbNoTopping;
     }
 }
