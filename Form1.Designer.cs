@@ -120,6 +120,7 @@
             this.gbExtraToppings.Controls.Add(this.cbGreenPeppers);
             this.gbExtraToppings.Controls.Add(this.cbSweetcorn);
             this.gbExtraToppings.Controls.Add(this.cbTomatoes);
+            this.gbExtraToppings.Enabled = false;
             this.gbExtraToppings.Location = new System.Drawing.Point(214, 55);
             this.gbExtraToppings.Name = "gbExtraToppings";
             this.gbExtraToppings.Size = new System.Drawing.Size(228, 230);
@@ -301,12 +302,14 @@
             this.gbSize.Controls.Add(this.rbMedium);
             this.gbSize.Controls.Add(this.rbSmall);
             this.gbSize.Controls.Add(this.rbPersonal);
+            this.gbSize.Enabled = false;
             this.gbSize.Location = new System.Drawing.Point(473, 55);
             this.gbSize.Name = "gbSize";
             this.gbSize.Size = new System.Drawing.Size(156, 127);
             this.gbSize.TabIndex = 4;
             this.gbSize.TabStop = false;
             this.gbSize.Text = "Size";
+            this.gbSize.Enter += new System.EventHandler(this.gbSize_Enter);
             // 
             // rbLarge
             // 
@@ -318,6 +321,7 @@
             this.rbLarge.TabStop = true;
             this.rbLarge.Text = "Large";
             this.rbLarge.UseVisualStyleBackColor = true;
+            this.rbLarge.Click += new System.EventHandler(this.SizeClicked);
             // 
             // rbMedium
             // 
@@ -329,6 +333,7 @@
             this.rbMedium.TabStop = true;
             this.rbMedium.Text = "Medium";
             this.rbMedium.UseVisualStyleBackColor = true;
+            this.rbMedium.Click += new System.EventHandler(this.SizeClicked);
             // 
             // rbSmall
             // 
@@ -340,6 +345,7 @@
             this.rbSmall.TabStop = true;
             this.rbSmall.Text = "Small";
             this.rbSmall.UseVisualStyleBackColor = true;
+            this.rbSmall.Click += new System.EventHandler(this.SizeClicked);
             // 
             // rbPersonal
             // 
@@ -351,6 +357,7 @@
             this.rbPersonal.TabStop = true;
             this.rbPersonal.Text = "Personal";
             this.rbPersonal.UseVisualStyleBackColor = true;
+            this.rbPersonal.Click += new System.EventHandler(this.SizeClicked);
             // 
             // btnReset
             // 
@@ -364,15 +371,18 @@
             // 
             // btnOrder
             // 
+            this.btnOrder.Enabled = false;
             this.btnOrder.Location = new System.Drawing.Point(479, 252);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(84, 23);
             this.btnOrder.TabIndex = 6;
             this.btnOrder.Text = "Place Order";
             this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // txtSpecialRequirements
             // 
+            this.txtSpecialRequirements.Enabled = false;
             this.txtSpecialRequirements.Location = new System.Drawing.Point(30, 356);
             this.txtSpecialRequirements.Multiline = true;
             this.txtSpecialRequirements.Name = "txtSpecialRequirements";
@@ -425,7 +435,7 @@
             this.Name = "Form1";
             this.Text = "Pizza Order Form";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Click += new System.EventHandler(this.ToppingClicked);
+            this.Click += new System.EventHandler(this.SizeClicked);
             this.gbExtraToppings.ResumeLayout(false);
             this.gbExtraToppings.PerformLayout();
             this.gbSize.ResumeLayout(false);
