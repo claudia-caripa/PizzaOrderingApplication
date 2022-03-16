@@ -142,6 +142,13 @@ namespace PizzaOrderingApplication
         private void cbNoTopping_CheckedChanged(object sender, EventArgs e)
         {
             gbExtraToppings.Enabled = false;
+
+            foreach (Control item in gbExtraToppings.Controls)
+            {
+                CheckBox checkBox = item as CheckBox;
+                checkBox.Checked = false;
+
+            }
         }
 
         /*Methods for each topping checkboxes, all of them call the method ToppingHasBeenClicked*/
@@ -246,6 +253,9 @@ namespace PizzaOrderingApplication
             else if (rbLarge.Checked)
             {
                 sizePrice = 4;
+            } else if (rbPersonal.Checked)
+            {
+                sizePrice = 0;
             }
 
             finalPrice = sizePrice + price;
