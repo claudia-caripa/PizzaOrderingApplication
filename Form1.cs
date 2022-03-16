@@ -40,7 +40,7 @@ namespace PizzaOrderingApplication
         /*Method to Reset all selections*/
         private void Reset()
         {
-
+            lstPizzaName.Enabled = true;
             lstPizzaName.SelectedItem = null;
             
             ResetCheckboxAndRadiobuttons();
@@ -135,6 +135,7 @@ namespace PizzaOrderingApplication
         private void ToppingClicked(object sender, EventArgs e)
         {
             gbSize.Enabled = true;
+            lstPizzaName.Enabled = false;
         }
 
         
@@ -306,7 +307,7 @@ namespace PizzaOrderingApplication
             /*Verifies if a special requirement has been type*/
             if (txtSpecialRequirements.Text != string.Empty)
             {
-                specialRequirements = $"special Requirements: {txtSpecialRequirements.Text}";
+                specialRequirements = $"special requirements: {txtSpecialRequirements.Text}";
             }
 
             MessageBox.Show($"Your order is: {size} {lstPizzaName.Text}, {toppings} \n\n{specialRequirements}\n\n" +
