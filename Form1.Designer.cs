@@ -32,6 +32,7 @@
             this.lstPizzaName = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbExtraToppings = new System.Windows.Forms.GroupBox();
+            this.cbNoTopping = new System.Windows.Forms.CheckBox();
             this.cbOnion = new System.Windows.Forms.CheckBox();
             this.cbBacon = new System.Windows.Forms.CheckBox();
             this.cbChicken = new System.Windows.Forms.CheckBox();
@@ -57,7 +58,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
-            this.cbNoTopping = new System.Windows.Forms.CheckBox();
             this.gbExtraToppings.SuspendLayout();
             this.gbSize.SuspendLayout();
             this.SuspendLayout();
@@ -123,12 +123,24 @@
             this.gbExtraToppings.Controls.Add(this.cbSweetcorn);
             this.gbExtraToppings.Controls.Add(this.cbTomatoes);
             this.gbExtraToppings.Enabled = false;
-            this.gbExtraToppings.Location = new System.Drawing.Point(214, 55);
+            this.gbExtraToppings.Location = new System.Drawing.Point(214, 62);
             this.gbExtraToppings.Name = "gbExtraToppings";
-            this.gbExtraToppings.Size = new System.Drawing.Size(228, 230);
+            this.gbExtraToppings.Size = new System.Drawing.Size(228, 240);
             this.gbExtraToppings.TabIndex = 3;
             this.gbExtraToppings.TabStop = false;
             this.gbExtraToppings.Text = "Extra Toppings";
+            // 
+            // cbNoTopping
+            // 
+            this.cbNoTopping.AutoSize = true;
+            this.cbNoTopping.Location = new System.Drawing.Point(47, 26);
+            this.cbNoTopping.Name = "cbNoTopping";
+            this.cbNoTopping.Size = new System.Drawing.Size(116, 19);
+            this.cbNoTopping.TabIndex = 14;
+            this.cbNoTopping.Text = "No extra topping";
+            this.cbNoTopping.UseVisualStyleBackColor = true;
+            this.cbNoTopping.CheckedChanged += new System.EventHandler(this.cbNoTopping_CheckedChanged);
+            this.cbNoTopping.Click += new System.EventHandler(this.ToppingClicked);
             // 
             // cbOnion
             // 
@@ -181,7 +193,7 @@
             // cbPineapple
             // 
             this.cbPineapple.AutoSize = true;
-            this.cbPineapple.Location = new System.Drawing.Point(122, 33);
+            this.cbPineapple.Location = new System.Drawing.Point(121, 206);
             this.cbPineapple.Name = "cbPineapple";
             this.cbPineapple.Size = new System.Drawing.Size(78, 19);
             this.cbPineapple.TabIndex = 9;
@@ -289,7 +301,7 @@
             // cbTomatoes
             // 
             this.cbTomatoes.AutoSize = true;
-            this.cbTomatoes.Location = new System.Drawing.Point(21, 33);
+            this.cbTomatoes.Location = new System.Drawing.Point(21, 208);
             this.cbTomatoes.Name = "cbTomatoes";
             this.cbTomatoes.Size = new System.Drawing.Size(77, 19);
             this.cbTomatoes.TabIndex = 0;
@@ -417,17 +429,6 @@
             this.lblPrice.Size = new System.Drawing.Size(34, 15);
             this.lblPrice.TabIndex = 10;
             this.lblPrice.Text = "$0.00";
-            // 
-            // cbNoTopping
-            // 
-            this.cbNoTopping.AutoSize = true;
-            this.cbNoTopping.Location = new System.Drawing.Point(55, 208);
-            this.cbNoTopping.Name = "cbNoTopping";
-            this.cbNoTopping.Size = new System.Drawing.Size(87, 19);
-            this.cbNoTopping.TabIndex = 14;
-            this.cbNoTopping.Text = "No topping";
-            this.cbNoTopping.UseVisualStyleBackColor = true;
-            this.cbNoTopping.Click += new System.EventHandler(this.ToppingClicked);
             // 
             // Form1
             // 

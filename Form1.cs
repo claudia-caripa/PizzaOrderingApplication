@@ -7,6 +7,8 @@ namespace PizzaOrderingApplication
             InitializeComponent();
         }
 
+        /*Declaration of global variables*/
+
         double price;
         double sizePrice = 0;
         double finalPrice = 0;
@@ -16,6 +18,8 @@ namespace PizzaOrderingApplication
             
         }
 
+
+        /*Method for unchecked checkboxes and radio buttons*/
         private void ResetCheckboxAndRadiobuttons()
         {
             foreach (Control item in gbExtraToppings.Controls)
@@ -31,6 +35,9 @@ namespace PizzaOrderingApplication
             }
 
         }
+
+
+        /*Method to Reset all selections*/
         private void Reset()
         {
 
@@ -44,9 +51,12 @@ namespace PizzaOrderingApplication
             gbExtraToppings.Enabled = false;
             gbSize.Enabled = false;
             txtSpecialRequirements.Enabled = false;
+            txtSpecialRequirements.Text = "";
             btnOrder.Enabled = false;
         }
 
+
+        /*Method to calculate base price depending on the type of pizza selected*/
         private void CalculateBasePrice(ListBox listBox)
         {
             if (lstPizzaName.SelectedItem != null)
@@ -89,23 +99,31 @@ namespace PizzaOrderingApplication
             lblPrice.Text = price.ToString("C");
         }
 
-        /*Update the price depending on the pizza name selected in the listBox*/
+
+        /*Method when a pizza type is selected in the list*/
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ResetCheckboxAndRadiobuttons();
-
             CalculateBasePrice(lstPizzaName);
 
+            /*GroupBox Extra Toppings will be enable*/
             gbExtraToppings.Enabled = true;
+
+            /*If user clicks the list again, this controls will be disable*/
+            txtSpecialRequirements.Enabled = false;
+            gbSize.Enabled = false;
+
+            /*All checkboxes for toppings will reset*/
+            ResetCheckboxAndRadiobuttons();
         }
 
+        /*This method is called when a checbox for a topping is clicked*/
         private void ToppingHasBeenClicked(CheckBox checkboxName)
         {
-            if (checkboxName.Checked)
+            if (checkboxName.Checked) //If topping is checked add 0.20
             {
                 price = Math.Round(price + 0.20, 2);
             }
-            else
+            else //If topping is unchecked substract 0.20
             {
                 price = Math.Round(price - 0.20, 2);
             }
@@ -113,11 +131,20 @@ namespace PizzaOrderingApplication
             lblPrice.Text = price.ToString("C");
         }
 
+        /*When a topping in the gbExtraToppings is clicked, gbSize will be eneble*/
         private void ToppingClicked(object sender, EventArgs e)
         {
             gbSize.Enabled = true;
         }
 
+        
+        /*If No extra topping checkbox is checked, the gbExtraToppings will be disable to prevent adding extra toppings*/
+        private void cbNoTopping_CheckedChanged(object sender, EventArgs e)
+        {
+            gbExtraToppings.Enabled = false;
+        }
+
+        /*Methods for each topping checkboxes, all of them call the method ToppingHasBeenClicked*/
         private void cbTomatoes_CheckedChanged(object sender, EventArgs e)
         {
             ToppingHasBeenClicked(cbTomatoes);
@@ -188,6 +215,8 @@ namespace PizzaOrderingApplication
             ToppingHasBeenClicked(cbSalami);
         }
 
+
+        /*Function of the Reset button*/
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
@@ -198,6 +227,8 @@ namespace PizzaOrderingApplication
 
         }
 
+
+        /*Method the evaluates which radio button for pizza size has been clicked, it updates the sizePrice and print a finalPrice*/
         private void SizeClicked(object sender, EventArgs e)
         {
             btnOrder.Enabled = true;
@@ -217,11 +248,11 @@ namespace PizzaOrderingApplication
                 sizePrice = 4;
             }
 
-
             finalPrice = sizePrice + price;
             lblPrice.Text = finalPrice.ToString("C");
         }
 
+        /*Method for the Order button, it will show a MessageBox with the summary of the order*/ 
         private void btnOrder_Click(object sender, EventArgs e)
         {
             string size = "";
@@ -231,6 +262,7 @@ namespace PizzaOrderingApplication
             Console.WriteLine(lstPizzaName.SelectedItem.ToString());
             Console.WriteLine(finalPrice.ToString("C"));
 
+            /*Verifies with size has been selected*/
             foreach (Control item in gbSize.Controls)
             {
                 RadioButton radioButton = item as RadioButton;
@@ -240,6 +272,7 @@ namespace PizzaOrderingApplication
                 }
             }
 
+            /*Verifies wich toppings has been selected*/
             if (cbNoTopping.Checked)
             {
                 toppings = " with no topping,";
@@ -257,21 +290,22 @@ namespace PizzaOrderingApplication
                 }
             }
 
-
-
-
             Console.WriteLine(size);
             Console.WriteLine(toppings);
 
+            /*Verifies if a special requirement has been type*/
             if (txtSpecialRequirements.Text != string.Empty)
             {
-                specialRequirements = $"Special Requirements: {txtSpecialRequirements.Text}";
+                specialRequirements = $"special Requirements: {txtSpecialRequirements.Text}";
             }
 
-            MessageBox.Show($"Your order is: {size} {lstPizzaName.Text}, {toppings} \n{specialRequirements}\n\n" +
+            MessageBox.Show($"Your order is: {size} {lstPizzaName.Text}, {toppings} \n\n{specialRequirements}\n\n" +
                 $"Please pay {finalPrice.ToString("C")} at the cashier.", "Your Order");
 
+            /*Reset the form after MessageBox*/
             Reset();
         }
+
+
     }
 }
